@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as ptl
 
 class Graficas:
@@ -17,4 +16,4 @@ class Graficas:
 
     def show_plot(self,img,pos):
         ptl.subplot(self.__x,self.__y, pos)
-        return ptl.imshow(img, 'gray')
+        return ptl.imshow(img)

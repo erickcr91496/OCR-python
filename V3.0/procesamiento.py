@@ -1,6 +1,4 @@
 import cv2 as ocv 
-import numpy as np 
-import pytesseract
 
 class Procesamiento:
 
@@ -15,7 +13,7 @@ class Procesamiento:
     def contorno(self):
         bordes = ocv.Canny(self.__img, 150, 200)
         bordes = ocv.dilate(bordes, None, iterations=1) 
-        contorno,_ = ocv.findContours(bordes, ocv.RETR_LIST, ocv.CHAIN_APPROX_SIMPLE)
+        _,contorno,_ = ocv.findContours(bordes, ocv.RETR_LIST, ocv.CHAIN_APPROX_SIMPLE)
         
         for c in contorno:
             
