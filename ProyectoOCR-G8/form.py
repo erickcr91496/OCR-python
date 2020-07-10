@@ -3,8 +3,7 @@ from tkinter import *
 from tkinter import filedialog 
 from PIL import ImageTk, Image
 
-import tkinter as tk
-from tkinter import ttk
+
 
 from captura import Captura
 from procesamiento import Procesamiento
@@ -52,11 +51,9 @@ def open_data():
    img =img_resize.resize((400,300))
    my_image = ImageTk.PhotoImage(img)
    # etapa de captura 
-   captura = Captura(miFrame.archivo)
-   img = captura.get_img()
-   # captura.show_img(img)
-   # top = Toplevel()
-   # top.config(width="500", height="400")
+   # captura = Captura(path)
+   # img = captura.get_img()
+
    # -------------
    my_image_label= Label(image=my_image,width="400", height="300").place(x=175,y=300)
 
@@ -96,10 +93,8 @@ def reconocer_placa1():
    # segmentacion de la imagen 
    segmentacion = Segmentacion(thresh)
    segmentacion.proccess()
-   txtplaca=""
    #Imprimir en formulario
-  
-   # txtplaca.set(segmentacion.proccess())
+
    var = StringVar();
    var.set(segmentacion.proccess());
    Label(miFrame, text= "Placa Reconocida: ", textvariable="",fg="black",justify="center", font=("Comic Sans MS",16)).place(x=200,y=200)
