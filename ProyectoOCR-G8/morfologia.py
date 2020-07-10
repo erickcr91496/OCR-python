@@ -11,9 +11,11 @@ class Morfologia():
     def get_img(self):
         return self.__img
 
+    # transformar a escala de grises
     def gray(self,img):
         return ocv.cvtColor(img, ocv.COLOR_BGR2GRAY)
 
+    # Operacion morfologica cierre para quitar el ruido
     def cierre(self,img):
         kernel = np.ones((5,5), np.uint8)
         return ocv.morphologyEx(img, ocv.MORPH_CLOSE, kernel)
@@ -21,21 +23,21 @@ class Morfologia():
     # difuminar
     def blur(self,img):
         return ocv.medianBlur(img, 3)
-    #umbralizacion
 
+    #binarizacion de imagen 
     def thresh(self,img):
         return ocv.threshold(img, 0, 255, ocv.THRESH_BINARY + ocv.THRESH_OTSU)[1]
 
-    #
+    #Operacion Morfologica de apertura 
     def opening(self,img):
         kernel = np.ones((3,3),np.uint8)
         return ocv.morphologyEx(img, ocv.MORPH_OPEN, kernel)
 
-    def show_img(self,img):
-        ocv.imshow('Output', img)
-        self.__sample_img()
+    # def show_img(self,img):
+    #     ocv.imshow('Output', img)
+    #     self.__sample_img()
 
 
-    def __sample_img(self):
-        ocv.moveWindow('Image', 45, 5)
-        ocv.waitKey(0)
+    # def __sample_img(self):
+    #     ocv.moveWindow('Image', 45, 5)
+    #     ocv.waitKey(0)

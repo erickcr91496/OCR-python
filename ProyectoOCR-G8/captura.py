@@ -1,6 +1,4 @@
 import cv2 as ocv 
-import numpy as np 
-import pytesseract
 
 
 class Captura:
@@ -11,18 +9,17 @@ class Captura:
     def get_img(self):
         return ocv.imread(self.__img)
 
+    # def set_img(self,value):
+    #     self.__img = value
 
-    def set_img(self,value):
-        self.__img = value
+    # #Mostrar imagen 
+    # def show_img(self,img):
+    #     ocv.imshow('Output', img)
+    #     self.__sample_img()
 
-
-    def show_img(self,img):
-        ocv.imshow('Output', img)
-        self.__sample_img()
-
-        
-    def __sample_img(self):
-        ocv.moveWindow('Image', 45, 5)
-        ocv.waitKey(0)
+    # # crear figura
+    # def __sample_img(self):
+    #     ocv.moveWindow('Image', 45, 5)
+    #     ocv.waitKey(0)
 
 

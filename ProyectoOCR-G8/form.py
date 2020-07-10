@@ -4,7 +4,6 @@ from tkinter import filedialog
 from PIL import ImageTk, Image
 
 
-
 from captura import Captura
 from procesamiento import Procesamiento
 from morfologia import Morfologia
@@ -36,13 +35,13 @@ Label(miFrame,image=logo).place(x=420,y=620)
 
 #FUNCIONES -------EVENTOS
 
-
+# ruta de la imagen seleccionada 
 def path_img():
    miFrame.archivo = filedialog.askopenfilename(title="Seleccione vehiculo", initialdir="E:/UTN\VIII SEMESTRE\Inteligencia Artificial\OCR\Software\Fotos de Vehiculos", filetypes=( ('JPEG / JFIF','*.jpg'), ('Portable Network Graphics','*.png'),      ('Windows Bitmap','*.bmp'),("All files", "*.*")))
    global path 
    path = miFrame.archivo
 
-
+#abrir la imagen seleccionada y visualizarla 
 def open_data(): 
    global my_image
    path_img()
@@ -57,7 +56,6 @@ def open_data():
    # -------------
    my_image_label= Label(image=my_image,width="400", height="300").place(x=175,y=300)
 
-
 def reconocer_placa1():
    # etapa de procesamiento 
    
@@ -66,12 +64,10 @@ def reconocer_placa1():
    img = captura.get_img()
    # captura.show_img(img) # muestra la imagen original
 
-
    # etapa de procesamiento 
    pre_procesamiento = Procesamiento(img)
    placa_img = pre_procesamiento.placa()
    # pre_procesamiento.show_placa()
-
 
    morfologia = Morfologia(placa_img)
 
@@ -80,15 +76,14 @@ def reconocer_placa1():
    img_bw = morfologia.gray(img)
    img_thresh = morfologia.thresh(img_bw)
 
-
    # morfologia de la placa 
 
    mor_img = morfologia.get_img()
 
    cierre = morfologia.cierre(mor_img)
-   blur = morfologia.blur(cierre)
-   bw = morfologia.gray(cierre)
-   thresh = morfologia.thresh(bw)
+   blur = morfologia.blur(cierre) # difuminacion
+   bw = morfologia.gray(cierre) # escala de grises 
+   thresh = morfologia.thresh(bw) # imagen binarizada
 
    # segmentacion de la imagen 
    segmentacion = Segmentacion(thresh)
@@ -123,11 +118,6 @@ def reconocer_placa1():
 btnOpenFile =Button(miFrame, text="Cargar Imagen del vehiculo", command= open_data, font=("Comic Sans MS",13), width="30", height="2", bg="#E9CA45", ).place(x=200,y=50)
 
 btnReconocer =Button(miFrame, text="Reconocer Nro de placa", command=reconocer_placa1, font=("Comic Sans MS",13),width="30", height="2", bg="#0DED32").place(x=200,y=120)
-
-
-
-
-
 
 
 
